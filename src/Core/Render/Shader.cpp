@@ -3,7 +3,7 @@
 #include "Core/Render/RendererAPI.h"
 #include "Core/Debug/Assert.h"
 
-std::shared_ptr<Shader> Shader::Create(const std::string& name, const std::string &vertexSrc, const std::string &fragmentSrc) 
+Ref<Shader> Shader::Create(const std::string& name, const std::string &vertexSrc, const std::string &fragmentSrc) 
 {
     switch(RendererAPI::GetCurrentAPI())
     {
@@ -14,14 +14,14 @@ std::shared_ptr<Shader> Shader::Create(const std::string& name, const std::strin
         }
         case RendererAPI::API::OpenGL:
         {
-            return std::make_shared<OpenGLShader>(name, vertexSrc, fragmentSrc);
+            return CreateRef<OpenGLShader>(name, vertexSrc, fragmentSrc);
         }
     }
     ASSERT(false, "[Shader] Please select an API backend for rendering. Options are [OpenGL, Vulcan]");
     return  nullptr;
 }
 
-std::shared_ptr<Shader> Shader::Create(const std::string &name, const std::string& filepath) 
+Ref<Shader> Shader::Create(const std::string &name, const std::string& filepath) 
 {
     switch(RendererAPI::GetCurrentAPI())
     {
@@ -32,7 +32,7 @@ std::shared_ptr<Shader> Shader::Create(const std::string &name, const std::strin
         }
         case RendererAPI::API::OpenGL:
         {
-            return std::make_shared<OpenGLShader>(name, filepath);
+            return CreateRef<OpenGLShader>(name, filepath);
         }
     }
     ASSERT(false, "[Shader] Please select an API backend for rendering. Options are [OpenGL, Vulcan]");
@@ -40,7 +40,7 @@ std::shared_ptr<Shader> Shader::Create(const std::string &name, const std::strin
 }
 
 
-void ShaderLibrary::Add(const std::string& name, const std::shared_ptr<Shader>& shader)
+void ShaderLibrary::Add(const std::string& name, const Ref<Shader>& shader)
 {
     m_ShaderLib[name] = shader;
 }
@@ -59,7 +59,7 @@ void ShaderLibrary::Load(const std::string& name, const std::string &vertexSrc, 
     Add(name, shader);
 }
 
-std::shared_ptr<Shader> ShaderLibrary::Get(const std::string& name)
+Ref<Shader> ShaderLibrary::Get(const std::string& name)
 {
     ASSERT(Exists(name), "Shader not found!");
     return m_ShaderLib[name];

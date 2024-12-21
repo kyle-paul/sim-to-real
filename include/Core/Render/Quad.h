@@ -1,4 +1,5 @@
 #pragma once
+#include "Core/Core.h"
 #include "Core/Render/Shader.h"
 #include "Core/Render/VertexArray.h"
 #include "Core/Render/Buffer.h"
@@ -14,7 +15,7 @@ public:
     Quad();
     ~Quad();
     void Init();
-    void Render(const std::shared_ptr<Shader> &shad, const glm::vec3 &position, const  int &type=-1);
+    void Render(const Ref<Shader> &shad, const glm::vec3 &position, const  int &type=-1);
 
 private:
     float vertices [4 * 3] = {
@@ -24,6 +25,6 @@ private:
         1.0f, 0.0f, 0.5f,
     };
 
-    std::shared_ptr<VertexArray> QuadVA;
-    std::shared_ptr<VertexBuffer> QuadVB;
+    Ref<VertexArray> QuadVA;
+    Ref<VertexBuffer> QuadVB;
 };

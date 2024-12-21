@@ -1,4 +1,5 @@
 #pragma once
+#include "Core/Core.h"
 #include "glad/glad.h"
 #include <memory>
 
@@ -20,7 +21,7 @@ public:
 class Texture2D : public Texture
 {
 public:
-    static std::shared_ptr<Texture2D> Create(uint32_t width, uint32_t height);
-    static std::shared_ptr<Texture2D> Create(const std::string& path);
+    static Ref<Texture2D> Create(uint32_t width, uint32_t height);
+    static Ref<Texture2D> Create(const std::string& path);
     virtual std::string GetPath() const = 0;
 };

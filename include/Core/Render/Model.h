@@ -1,4 +1,5 @@
 #pragma once
+#include "Core/Core.h"
 #include "Core/Render/VertexArray.h"
 #include "Core/Render/Buffer.h"
 #include <string>
@@ -21,6 +22,6 @@ private:
 
 private:
     std::vector<float> vertices;
-    std::shared_ptr<VertexArray> VA; 
-    std::shared_ptr<VertexBuffer> VB;
+    Ref<VertexArray> VA; 
+    Ref<VertexBuffer> VB;
 };

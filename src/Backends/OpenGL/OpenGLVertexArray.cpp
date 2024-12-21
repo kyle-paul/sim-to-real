@@ -21,14 +21,14 @@ void OpenGLVertexArray::UnBind() const
     glBindVertexArray(0);
 }
 
-void OpenGLVertexArray::SetIndexBuffer(const std::shared_ptr<IndexBuffer> &index_buffer)
+void OpenGLVertexArray::SetIndexBuffer(const Ref<IndexBuffer> &index_buffer)
 {    
     glBindVertexArray(VAO);
     index_buffer->Bind();
     m_IndexBuffer = index_buffer;
 }
 
-void OpenGLVertexArray::AddVertexBuffer(const std::shared_ptr<VertexBuffer> &vertex_buffer)
+void OpenGLVertexArray::AddVertexBuffer(const Ref<VertexBuffer> &vertex_buffer)
 {
     glBindVertexArray(VAO);
     vertex_buffer->Bind();

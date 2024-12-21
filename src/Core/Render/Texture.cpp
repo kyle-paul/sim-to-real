@@ -3,7 +3,7 @@
 #include "Core/Render/RendererAPI.h"
 #include "Core/Debug/Assert.h"
 
-std::shared_ptr<Texture2D> Texture2D::Create(const std::string &path)
+Ref<Texture2D> Texture2D::Create(const std::string &path)
 {
     switch(RendererAPI::GetCurrentAPI())
     {
@@ -21,7 +21,7 @@ std::shared_ptr<Texture2D> Texture2D::Create(const std::string &path)
     return  nullptr;
 }
 
-std::shared_ptr<Texture2D> Texture2D::Create(uint32_t width, uint32_t height)
+Ref<Texture2D> Texture2D::Create(uint32_t width, uint32_t height)
 {
     switch(RendererAPI::GetCurrentAPI())
     {

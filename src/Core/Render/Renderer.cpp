@@ -27,14 +27,14 @@ void Renderer::Shutdown()
 
 #include <iostream>
 
-void Renderer::Draw(const std::shared_ptr<VertexArray> &VA, const bool &isQuad, const uint32_t &count)
+void Renderer::Draw(const Ref<VertexArray> &VA, const bool &isQuad, const uint32_t &count)
 {
     VA->Bind();
     if (isQuad) glDrawArrays(GL_QUADS, 0, count);
     else glDrawArrays(GL_TRIANGLES, 0, count);
 }
 
-void Renderer::DrawIndexed(const std::shared_ptr<VertexArray> &VA)
+void Renderer::DrawIndexed(const Ref<VertexArray> &VA)
 {
     VA->Bind();
     glDrawElements(GL_TRIANGLES, VA->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);    

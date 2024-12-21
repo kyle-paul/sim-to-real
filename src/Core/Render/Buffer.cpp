@@ -2,7 +2,7 @@
 #include "Core/Render/RendererAPI.h"
 #include "Backends/OpenGL/OpenGLBuffer.h"
 
-std::shared_ptr<VertexBuffer> VertexBuffer::Create(float *vertices, uint32_t size)
+Ref<VertexBuffer> VertexBuffer::Create(float *vertices, uint32_t size)
 {
     switch(RendererAPI::GetCurrentAPI()) 
     {
@@ -13,7 +13,7 @@ std::shared_ptr<VertexBuffer> VertexBuffer::Create(float *vertices, uint32_t siz
         }
         case RendererAPI::API::OpenGL: 
         {
-            return std::make_shared<OpenGLVertexBuffer>(vertices, size);
+            return CreateRef<OpenGLVertexBuffer>(vertices, size);
         }
     }
     ASSERT(false, "[Vertex Buffer] Please select an API backend for rendering. Options are [OpenGL, Vulcan]");
@@ -25,7 +25,7 @@ VertexBuffer::~VertexBuffer()
 
 }
 
-std::shared_ptr<IndexBuffer> IndexBuffer::Create(uint32_t *indices, uint32_t count) 
+Ref<IndexBuffer> IndexBuffer::Create(uint32_t *indices, uint32_t count) 
 {
     switch(RendererAPI::GetCurrentAPI()) 
     {
@@ -36,7 +36,7 @@ std::shared_ptr<IndexBuffer> IndexBuffer::Create(uint32_t *indices, uint32_t cou
         }
         case RendererAPI::API::OpenGL: 
         {
-            return std::make_shared<OpenGLIndexBuffer>(indices, count);
+            return CreateRef<OpenGLIndexBuffer>(indices, count);
         }
     }
     ASSERT(false, "[Index Buffer] Please select an API backend for rendering. Options are [OpenGL, Vulcan]");

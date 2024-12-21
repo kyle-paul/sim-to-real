@@ -4,6 +4,8 @@
 #include <unordered_map>
 #include <glm/glm.hpp>
 
+#include "Core/Core.h"
+
 class Shader
 {
 public:
@@ -20,20 +22,20 @@ public:
     virtual void SetFloat4(const std::string& name, const glm::vec4& value) = 0;
     virtual void SetMat4(const std::string& name, const glm::mat4& value) = 0;
 
-    static std::shared_ptr<Shader> Create(const std::string &name, const std::string& filepath);
-    static std::shared_ptr<Shader> Create(const std::string& name, const std::string &vertexSrc, const std::string &fragmentSrc);
+    static Ref<Shader> Create(const std::string &name, const std::string& filepath);
+    static Ref<Shader> Create(const std::string& name, const std::string &vertexSrc, const std::string &fragmentSrc);
 };
 
 class ShaderLibrary
 {
 public:
-    void Add(const std::string& name, const std::shared_ptr<Shader>& shader);
+    void Add(const std::string& name, const Ref<Shader>& shader);
     bool Exists(const std::string& name) const;
     
     void Load(const std::string& name, const std::string& filepath);
     void Load(const std::string& name, const std::string &vertexSrc, const std::string &fragmentSrc);
-    std::shared_ptr<Shader> Get(const std::string& name);
+    Ref<Shader> Get(const std::string& name);
 
 private:
-    std::unordered_map<std::string, std::shared_ptr<Shader>> m_ShaderLib;
+    std::unordered_map<std::string, Ref<Shader>> m_ShaderLib;
 };

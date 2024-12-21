@@ -1,5 +1,6 @@
 #pragma once
 #include <memory>
+#include "Core/Core.h"
 #include "Core/Debug/Assert.h"
 
 enum class FramebufferTextureFormat
@@ -51,5 +52,5 @@ public:
 	virtual int ReadPixel(unsigned int index, int x, int y) const = 0;
 	virtual void ClearAttachment(unsigned int index, int value) = 0;
 
-	static std::shared_ptr<Framebuffer> Create(const FramebufferConfig& spec);
+	static Ref<Framebuffer> Create(const FramebufferConfig& spec);
 };

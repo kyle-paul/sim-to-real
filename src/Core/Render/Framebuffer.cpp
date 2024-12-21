@@ -2,7 +2,7 @@
 #include "Core/Render/RendererAPI.h"
 #include "Backends/OpenGL/OpenGLFramebuffer.h"
 
-std::shared_ptr<Framebuffer> Framebuffer::Create(const FramebufferConfig& spec)
+Ref<Framebuffer> Framebuffer::Create(const FramebufferConfig& spec)
 {
     switch(RendererAPI::GetCurrentAPI()) 
     {
